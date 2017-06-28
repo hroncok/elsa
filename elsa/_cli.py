@@ -22,7 +22,7 @@ class Elsa:
 
         Arguments:
 
-        * app: and instance of Flask WSGI application
+        * app: an instance of a Flask WSGI application
         * freezer:  flask_frozen.Freezer-like instance (optional)
         * base_url: URL for the application, used for external links (optional)
         """
@@ -59,7 +59,7 @@ class Elsa:
         base_url = (base_url or self.base_url or
                     self.app.config.get('FREEZER_BASE_URL'))
         if not base_url:
-            raise ValueError('No base URL provided!')
+            raise ValueError('No base URL provided')
         self.app.config['FREEZER_BASE_URL'] = base_url
 
         path = path or self.app.config.get('FREEZER_DESTINATION')
@@ -67,7 +67,7 @@ class Elsa:
         self.app.config['SERVER_NAME'] = urllib.parse.urlparse(base_url).netloc
 
         if not path:
-            raise ValueError('No path provided!')
+            raise ValueError('No path provided')
 
         # make sure Frozen Flask warnings are treated as errors
         warnings.filterwarnings('error',
@@ -85,7 +85,7 @@ class Elsa:
             sys.exit(1)
 
     def serve(self, port=DEFAULT_PORT):
-        """Serve the frozen app using the freezers ability to serve what was
+        """Serve the frozen app using the freezer's ability to serve what was
         frozen"""
         return self.freezer.serve(port=port)
 
