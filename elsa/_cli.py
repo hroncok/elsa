@@ -200,7 +200,7 @@ class Elsa:
                 if not base_url:
                     raise click.UsageError('No base URL provided, use '
                                            '--base-url')
-                self.freeze(path, base_url)
+                self.freeze_fail_exit(path, base_url)
 
             deploy_(path, remote=remote, push=push,
                     show_err=show_git_push_stderr)
